@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: a5f549236c564db4ea676c0d4d595df3
+guid: ed00ef7a7b50e574aadbf28bc5a95dda
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Bored
+    second: Falling Idle (1)
+  - first:
+      74: -834242682254674239
+    second: Falling Idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Bored
+      name: Falling Idle
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 320
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

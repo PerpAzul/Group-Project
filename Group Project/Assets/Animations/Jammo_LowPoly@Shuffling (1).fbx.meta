@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 413480265a5cc99479e1613f85ef8045
+guid: 122c5d3ff65a15e4d9230ca12971c718
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Offensive Idle
+    second: Shuffling (1)
+  - first:
+      74: -5654406193977411491
+    second: Shuffling
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Offensive Idle
+      name: Shuffling
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 317
+      lastFrame: 225
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
