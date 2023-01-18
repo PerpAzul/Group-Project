@@ -22,14 +22,15 @@ public class Player : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
+    
+    // SpawnPoint
+    [SerializeField] private Transform spawnPoint;
 
-    // Start is called before the first frame update
         void Start()
         {
-            
+        Spawn();
         }
     
-        // Update is called once per frame
         void Update()
         {
             //check if player is on the ground or not
@@ -59,5 +60,17 @@ public class Player : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         }
-    
+        
+        private void Spawn()
+        {
+            transform.position = spawnPoint.position;
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Finish"))
+            {
+                Spawn();
+            }
+        }
 }

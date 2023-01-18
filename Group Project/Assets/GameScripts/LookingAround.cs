@@ -11,7 +11,7 @@ public class LookingAround : MonoBehaviour
     public Transform playerBody;
 
     //rotation
-    private float xRotation = 0f;
+    private float xRotation;
     // Start is called before the first frame update
     void Start()
     {
