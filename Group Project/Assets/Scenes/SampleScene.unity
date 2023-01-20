@@ -1731,6 +1731,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4764629438273646291, guid: f39952e4ec460a44dbcc14e427d1c36f, type: 3}
   m_PrefabInstance: {fileID: 8735072188753081123}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1785778923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3234673099035288712, guid: 0c08caae8225b9d459f6f2779366df57, type: 3}
+  m_PrefabInstance: {fileID: 6900133781579081362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1793999410
 GameObject:
   m_ObjectHideFlags: 3
@@ -2028,6 +2033,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1925438182201251483, guid: 0c08caae8225b9d459f6f2779366df57, type: 3}
   m_PrefabInstance: {fileID: 6900133781579081362}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5006512736635842576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785778923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69edb80a8cc66ec489a14a7f437d23dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0
+  jumpHeight: 0
+  gravityMultiplier: 0
+  jumpHorizontalSpeed: 0
+  jumpButtonGracePeriod: 0
+  cameraTransform: {fileID: 0}
 --- !u!1001 &6900133781579081362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2095,7 +2118,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ce265cc1b15570b40bc800920993732b, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6900133781071652015, guid: 0c08caae8225b9d459f6f2779366df57, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0c08caae8225b9d459f6f2779366df57, type: 3}
 --- !u!1001 &8735072188753081123
 PrefabInstance:

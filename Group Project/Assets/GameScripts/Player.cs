@@ -25,7 +25,13 @@ public class Player : MonoBehaviour
     
     // SpawnPoint
     [SerializeField] private Transform spawnPoint;
-
+    
+    //Life
+    [SerializeField] private int lives;
+    
+    //UI
+    [SerializeField] private TMPro.TextMeshProUGUI livesUI;
+    
         void Start()
         {
         Spawn();
@@ -59,17 +65,34 @@ public class Player : MonoBehaviour
             //applying gravity to the player
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
+            
+            //UI for ammo and life
+            livesUI.text = "Lives: " + lives;
         }
         
         private void Spawn()
         {
             transform.position = spawnPoint.position;
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Finish"))
             {
+                lives = 3;
+                Shooting.returnAmmo();
+                Spawn();
+            }
+
+            if (other.CompareTag("Player"))
+            {
+                lives--;
+            }
+
+            if (lives <= 0)
+            {
+                lives = 3;
+                Shooting.returnAmmo();
                 Spawn();
             }
         }
