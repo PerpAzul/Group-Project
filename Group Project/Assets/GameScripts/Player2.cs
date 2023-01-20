@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     public CharacterController controller;
 
@@ -70,7 +68,7 @@ public class Player : MonoBehaviour
     
     private void Spawn()
     {
-        transform.position = new Vector3(0.004f, 1.71f, 85.128f);
+        transform.position = new Vector3(0.048f, 1.819f, -0.157f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,7 +80,7 @@ public class Player : MonoBehaviour
             Spawn();
         }
 
-        if (other.CompareTag("EditorOnly"))
+        if (other.CompareTag("Player"))
         {
             lives--;
         }
@@ -119,3 +117,4 @@ public class Player : MonoBehaviour
         inputControls.Player.Jump.Disable();
     }
 }
+
