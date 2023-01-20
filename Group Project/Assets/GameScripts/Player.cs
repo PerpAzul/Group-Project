@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     public CharacterController controller;
+
+    private NewControls inputControls;
+    private InputAction movement;
 
     //speed of player
     public float speed = 12f;
@@ -31,69 +36,89 @@ public class Player : MonoBehaviour
     
     //UI
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
-    
-        void Start()
-        {
+
+    private void Awake()
+    {
+        inputControls = new NewControls();
+    }
+
+    void Start()
+    {
         Spawn();
-        }
+    }
     
-        void Update()
+    void Update()
+    {
+        //check if player is on the ground or not
+        
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
         {
-            //check if player is on the ground or not
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-            if (isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f;
-            }
-            
-            //input to move the player
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            //moving the player
-            Vector3 move = transform.right * x + transform.forward * z;
-            controller.Move(move * speed * Time.deltaTime);
-            
-            //jumping
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
-            
-
-            //applying gravity to the player
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-            
-            //UI for ammo and life
-            livesUI.text = "Lives: " + lives;
+            velocity.y = -2f;
         }
         
-        private void Spawn()
+        //moving the player
+        Vector3 move = movement.ReadValue<Vector2>().x * transform.right + movement.ReadValue<Vector2>().y * transform.forward;
+        controller.Move( move * speed * Time.deltaTime);
+        
+
+        //applying gravity to the player
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+        
+        //UI for ammo and life
+        livesUI.text = "Lives: " + lives;
+    }
+    
+    private void Spawn()
+    {
+        transform.position = spawnPoint.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
         {
-            transform.position = spawnPoint.position;
+            lives = 3;
+            Shooting.returnAmmo();
+            Spawn();
         }
 
-        private void OnTriggerEnter(Collider other)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Finish"))
-            {
-                lives = 3;
-                Shooting.returnAmmo();
-                Spawn();
-            }
-
-            if (other.CompareTag("Player"))
-            {
-                lives--;
-            }
-
-            if (lives <= 0)
-            {
-                lives = 3;
-                Shooting.returnAmmo();
-                Spawn();
-            }
+            lives--;
         }
+
+        if (lives <= 0)
+        {
+            lives = 3;
+            Shooting.returnAmmo();
+            Spawn();
+        }
+    }
+
+    private void OnEnable()
+    {
+        movement = inputControls.Player.Move;
+        movement.Enable();
+
+        inputControls.Player.Jump.performed += doJump;
+        inputControls.Player.Jump.Enable();
+    }
+    
+
+    private void doJump(InputAction.CallbackContext obj)
+    {
+        if (isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+    }
+
+    private void OnDisable()
+    {
+        movement.Disable();
+        inputControls.Player.Jump.Disable();
+    }
 }
