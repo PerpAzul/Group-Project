@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using Palmmedia.ReportGenerator.Core.Properties;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 public class OptionsScreen : MonoBehaviour
 
 
 {
     public Toggle fullscreenToggle, vsyncToggle;
     private int selectedResolution;
+    
     public List<ResolutionItem> resolutions = new List<ResolutionItem>();
     public TMP_Text resolutionLabel;
+
+    public AudioMixer theMixer;
+    public TMP_Text masterLabel, musicLabel, sfxLabel;
+    public Slider masterSlider, musicSlider, sfxSlider;
     
     // Start is called before the first frame update
     void Start()
@@ -52,7 +57,17 @@ public class OptionsScreen : MonoBehaviour
             updateResLabel();
         }
 
+        float vol = 0f;
+        theMixer.GetFloat("MasterVol", out vol);
+        masterSlider.value = vol;
+        theMixer.GetFloat("MusicVol", out vol);
+        musicSlider.value = vol;
+        theMixer.GetFloat("SFXVol", out vol);
+        sfxSlider.value = vol;
 
+        masterLabel.text = Mathf.RoundToInt(masterSlider.value + 80).ToString();
+        musicLabel.text = Mathf.RoundToInt(musicSlider.value + 80).ToString();
+        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value + 80).ToString();
     }
 
     // Update is called once per frame
@@ -91,7 +106,7 @@ public class OptionsScreen : MonoBehaviour
 
     public void ApplyGraphics()
     {
-        //Screen.fullScreen = fullscreenToggle.isOn;
+        Screen.fullScreen = fullscreenToggle.isOn;
 
         if (vsyncToggle.isOn)
         {
@@ -105,6 +120,34 @@ public class OptionsScreen : MonoBehaviour
         Screen.SetResolution(resolutions[selectedResolution].horizontal, resolutions[selectedResolution].vertical,
             fullscreenToggle.isOn);
     }
+
+    public void SetMasterVolume()
+    {
+        masterLabel.text = Mathf.RoundToInt(masterSlider.value + 80).ToString();
+
+        theMixer.SetFloat("MasterVol", masterSlider.value);
+        
+        PlayerPrefs.SetFloat("MasterVol", masterSlider.value);
+    }
+    
+    public void SetMusicVolume()
+    {
+        musicLabel.text = Mathf.RoundToInt(musicSlider.value + 80).ToString();
+
+        theMixer.SetFloat("MusicVol", musicSlider.value);
+        
+        PlayerPrefs.SetFloat("MusicVol", musicSlider.value);
+    }
+    
+    public void SetSFXVolume()
+    {
+        sfxLabel.text = Mathf.RoundToInt(sfxSlider.value + 80).ToString();
+
+        theMixer.SetFloat("SFXVol", sfxSlider.value);
+        
+        PlayerPrefs.SetFloat("SFXVol", sfxSlider.value);
+    }
+    
 
 }
 [System.Serializable]
