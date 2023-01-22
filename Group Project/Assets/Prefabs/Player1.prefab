@@ -525,7 +525,6 @@ GameObject:
   - component: {fileID: 3003099290114064882}
   - component: {fileID: 3003099290114064845}
   - component: {fileID: 3003099290114064844}
-  - component: {fileID: 3003099290114064847}
   - component: {fileID: 3003099290114064846}
   - component: {fileID: 3003099290114064842}
   - component: {fileID: 3003099290114064843}
@@ -662,48 +661,6 @@ MonoBehaviour:
     m_Bits: 64
   lives: 3
   livesUI: {fileID: 398590474}
---- !u!114 &3003099290114064847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3003099290114064885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abf8642dad62ff409def0a2eb9e05f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GamePaused:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3003099290114064885}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: 
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  GameResumed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3003099290114064885}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: 
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &3003099290114064846
 MonoBehaviour:
   m_ObjectHideFlags: 0
