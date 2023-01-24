@@ -31,6 +31,10 @@ public class Player2 : MonoBehaviour
     
     //UI
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
+    
+    //PlayerIndex
+    private int index = 1;
+    private int splitScreenIndex = 0;
 
     private void Awake()
     {

@@ -57,17 +57,21 @@ public class Shooting : MonoBehaviour
     
     private void OnEnable()
     {
-        inputControls.Player.Shoot.performed += doShoot;
-        inputControls.Player.Shoot.Enable();
+        // inputControls.Player.Shoot.performed += doShoot;
+        // inputControls.Player.Shoot.Enable();
     }
     
-    private void doShoot(InputAction.CallbackContext obj)
+    public void doShoot(InputAction.CallbackContext obj)
     {
-        Shoot();
+        if (obj.performed)
+        {
+            Debug.Log(obj.ReadValue<float>());
+            Shoot();
+        }
     }
     
     private void OnDisable()
     {
-        inputControls.Player.Shoot.Disable();
+        // inputControls.Player.Shoot.Disable();
     }
 }

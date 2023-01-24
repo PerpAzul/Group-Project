@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class LookingAround : MonoBehaviour
 {
     private NewControls inputControls;
-    private InputAction looking;
+    private Vector2 looking;
     
     //sensitivity
     [SerializeField] private float mouseSensitivity = 100f;
@@ -34,8 +34,8 @@ public class LookingAround : MonoBehaviour
     {
         //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-        float mouseX = looking.ReadValue<Vector2>().x * mouseSensitivity * Time.deltaTime;
-        float mouseY = looking.ReadValue<Vector2>().y * mouseSensitivity * Time.deltaTime;
+        float mouseX = looking.x * mouseSensitivity * Time.deltaTime;
+        float mouseY = looking.y * mouseSensitivity * Time.deltaTime;
 
         //looking up/down
         xRotation -= mouseY;
@@ -45,15 +45,20 @@ public class LookingAround : MonoBehaviour
         //looking right/left
         playerBody.Rotate(Vector3.up * mouseX);
     }
+
+    public void DoLook(InputAction.CallbackContext context)
+    {
+        looking = context.ReadValue<Vector2>();
+    }
     
     private void OnEnable()
     {
-        looking = inputControls.Player.Look;
-        looking.Enable();
+        // looking = inputControls.Player.Look;
+        // looking.Enable();
     }
     
     private void OnDisable()
     {
-        looking.Disable();
+        //looking.Disable();
     }
 }

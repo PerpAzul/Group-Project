@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public CharacterController controller;
 
     private NewControls inputControls;
-    private InputAction movement;
+    private Vector2 movement;
 
     //speed of player
     public float speed = 12f;
@@ -33,6 +33,10 @@ public class Player : MonoBehaviour
     
     //UI
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
+    
+    //PlayerIndex
+    private int index = 0;
+    private int splitScreenIndex = -1;
 
     private void Awake()
     {
@@ -56,7 +60,7 @@ public class Player : MonoBehaviour
         }
         
         //moving the player
-        Vector3 move = movement.ReadValue<Vector2>().x * transform.right + movement.ReadValue<Vector2>().y * transform.forward;
+        Vector3 move = movement.x * transform.right + movement.y * transform.forward;
         controller.Move( move * speed * Time.deltaTime);
         
 
@@ -97,25 +101,30 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        movement = inputControls.Player.Move;
-        movement.Enable();
+        //movement = inputControls.Player.Move;
+        //movement.Enable();
 
-        inputControls.Player.Jump.performed += doJump;
-        inputControls.Player.Jump.Enable();
+        //inputControls.Player.Jump.performed += doJump;
+        //inputControls.Player.Jump.Enable();
     }
     
 
-    private void doJump(InputAction.CallbackContext obj)
+    public void doJump(InputAction.CallbackContext obj)
     {
         if (isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
+    
+    public void doMove(InputAction.CallbackContext obj)
+    {
+        movement = obj.ReadValue<Vector2>();
+    }
 
     private void OnDisable()
     {
-        movement.Disable();
-        inputControls.Player.Jump.Disable();
+        //movement.Disable();
+        //inputControls.Player.Jump.Disable();
     }
 }

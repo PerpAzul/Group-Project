@@ -1308,8 +1308,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1281370384}
   - component: {fileID: 1281370383}
+  - component: {fileID: 1281370385}
   m_Layer: 0
-  m_Name: Input Manager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1327,10 +1328,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_MaxPlayerCount: 2
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1374,6 +1375,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1281370385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281370382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea8c339c154bbc45993fffd1bbc7474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerList: []
+  joinAction:
+    m_Name: Join
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 370481fa-3315-4b2f-ad80-af9762abf4ea
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 5b85de83-b7e3-489a-8a7e-e012a209c79d
+      m_Path: <XInputController>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Join
+      m_Flags: 0
+    - m_Name: 
+      m_Id: f686619f-e1e7-44b0-b17c-e3c1661b98c3
+      m_Path: <DualSenseGamepadHID>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Join
+      m_Flags: 0
+    m_Flags: 0
+  leaveAction:
+    m_Name: Leave
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 047e52de-82bb-4a62-bf16-57acc32dd462
+    m_Processors: 
+    m_Interactions: Hold
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ea4c48b2-85d8-4a0d-ac96-76e493b894a1
+      m_Path: <XInputController>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Leave
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 0d3f04a3-4a36-409c-a7c8-372e2a78d512
+      m_Path: <DualSenseGamepadHID>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Leave
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &1308523220
 GameObject:
   m_ObjectHideFlags: 0
