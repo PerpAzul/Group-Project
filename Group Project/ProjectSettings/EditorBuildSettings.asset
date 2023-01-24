@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpaceTests.unity
     guid: 891a2142fa9338449bcd4aa7f2e55289
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 46c681ac43b87874bb8f97df37e08610, type: 2}

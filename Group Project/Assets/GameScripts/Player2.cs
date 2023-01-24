@@ -76,7 +76,7 @@ public class Player2 : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             lives = 3;
-            Shooting.returnAmmo();
+            Shooting2.returnAmmo();
             Spawn();
         }
 
@@ -88,9 +88,43 @@ public class Player2 : MonoBehaviour
         if (lives <= 0)
         {
             lives = 3;
-            Shooting.returnAmmo();
+            Shooting2.returnAmmo();
             Spawn();
         }
+        if(other.CompareTag("Ammo"))
+        {
+            Destroy(other.gameObject);
+            Shooting2.pickUpAmmo();
+        }
+        if(other.CompareTag("Healz"))
+        {
+            Destroy(other.gameObject);
+            lives++;
+        }
+        if(other.CompareTag("SkyTP"))
+        {
+            Destroy(other.gameObject);
+            OnDisable();
+            Invoke("actualTP", 0.1f);
+            Invoke("OnEnable", 0.2f);
+            StartCoroutine(TpCoroutine());
+        }
+        if(other.CompareTag("SkyTpPlatform"))
+        {
+            Debug.Log("Collided with SkyPlatform");
+            StartCoroutine(TpCoroutine());
+        }
+    }
+
+    IEnumerator TpCoroutine()
+    {
+        yield return new WaitForSeconds(5f);
+        Spawn();
+    }
+
+    private void actualTP()
+    {
+        transform.position = new Vector3(-2, 106, 38);
     }
 
     private void OnEnable()
@@ -107,6 +141,7 @@ public class Player2 : MonoBehaviour
     {
         if (isGrounded)
         {
+            Debug.Log("Jumping");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }

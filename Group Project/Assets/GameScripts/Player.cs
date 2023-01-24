@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
             Spawn();
         }
 
-        if (other.CompareTag("EditorOnly"))
+        if (other.gameObject.CompareTag("EditorOnly"))
         {
             lives--;
         }
@@ -93,6 +93,40 @@ public class Player : MonoBehaviour
             Shooting.returnAmmo();
             Spawn();
         }
+        if(other.CompareTag("Ammo"))
+        {
+            Destroy(other.gameObject);
+            Shooting.pickUpAmmo();
+        }
+        if(other.CompareTag("Healz"))
+        {
+            Destroy(other.gameObject);
+            lives++;
+        }
+        if(other.CompareTag("SkyTP"))
+        {
+            Destroy(other.gameObject);
+            OnDisable();
+            Invoke("actualTP", 0.1f);
+            Invoke("OnEnable", 0.2f);
+            StartCoroutine(TpCoroutine());
+        }
+        if(other.CompareTag("SkyTpPlatform"))
+        {
+            Debug.Log("Collided with SkyPlatform");
+            StartCoroutine(TpCoroutine());
+        }
+    }
+    
+    IEnumerator TpCoroutine()
+    {
+        yield return new WaitForSeconds(5f);
+        Spawn();
+    }
+
+    private void actualTP()
+    {
+        transform.position = new Vector3(-2, 106, 38);
     }
 
     private void OnEnable()
@@ -118,4 +152,5 @@ public class Player : MonoBehaviour
         movement.Disable();
         inputControls.Player.Jump.Disable();
     }
+    
 }

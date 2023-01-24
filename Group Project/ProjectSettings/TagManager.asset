@@ -6,6 +6,10 @@ TagManager:
   tags:
   - DeathZone
   - Ground
+  - Ammo
+  - Healz
+  - SkyTP
+  - SkyTpPlatform
   layers:
   - Default
   - TransparentFX

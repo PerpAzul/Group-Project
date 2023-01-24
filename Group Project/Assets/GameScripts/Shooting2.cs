@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Shooting : MonoBehaviour
+public class Shooting2 : MonoBehaviour
 {
     private NewControls inputControls;
     
@@ -14,7 +14,7 @@ public class Shooting : MonoBehaviour
     private bool isShooting = false;
     [SerializeField] private GameObject bulletPoint;
     [SerializeField] private GameObject bulletPrefab;
-    public static float ammo = 1000;
+    public static float ammo2 = 1000;
     
     //UI variables
     [SerializeField] private TMPro.TextMeshProUGUI ammoUI;
@@ -27,18 +27,18 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ammoUI.text = "Ammo: " + ammo;
+        ammoUI.text = "Ammo: " + ammo2;
     }
 
     //Shoots
     public void Shoot()
     {
-        if (ammo > 0)
+        if (ammo2 > 0)
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, transform.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
-            ammo--;
-            Destroy(bullet, 2);   
+            ammo2--;
+            Destroy(bullet, 2);
         }
     }
 
@@ -52,7 +52,7 @@ public class Shooting : MonoBehaviour
 
     public static void returnAmmo()
     {
-        ammo = 1000;
+        ammo2 = 1000;
     }
     
     private void OnEnable()
@@ -72,7 +72,7 @@ public class Shooting : MonoBehaviour
     }
     public static void pickUpAmmo()
     {
-        ammo += 10;
+        ammo2 += 10;
     }
     
 }

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 16473dcbd4a5daa42a586170e2ca1f09
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Ammo: {fileID: 8608789164611380303, guid: cdb80243302c941479f73485450b04d2, type: 3}
+  - Healz: {fileID: 8881006321242326763, guid: dd5bee0758966864ba1eb53fe8ed4528, type: 3}
+  - SkyTP: {fileID: 374979687266292495, guid: 395134625df8c974db2150c02f2d626a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
