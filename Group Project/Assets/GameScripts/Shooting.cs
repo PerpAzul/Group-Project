@@ -31,10 +31,14 @@ public class Shooting : MonoBehaviour
     
     //Particle System
     [SerializeField] private ParticleSystem flash;
+    
+    //Audio Source
+    [SerializeField] private AudioSource tickSource;
 
     private void Start()
     {
         hitmarkerUI.gameObject.SetActive(false);
+        tickSource = GetComponent<AudioSource>();
     }
 
     public void Init(int id)
@@ -55,6 +59,7 @@ public class Shooting : MonoBehaviour
         if (ammo > 0)
         {
             ammo--;
+            tickSource.Play();
             flash.Play();
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
@@ -73,6 +78,11 @@ public class Shooting : MonoBehaviour
     public void returnAmmo()
     {
         ammo = 10;
+    }
+
+    public void pickUpAmmo()
+    {
+        ammo = ammo + 10;
     }
 
     public void doShoot(InputAction.CallbackContext obj)

@@ -61,21 +61,25 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Material playerMateria1;
     [SerializeField] private Material playerMateria2;
+    
+    //Audio Source
+    [SerializeField] private AudioSource tickSource;
 
     private void Start()
     {
         dashCooldownUI.gameObject.SetActive(true);
+        tickSource = GetComponent<AudioSource>();
     }
 
     public void Init(int id)
     {
         if (id == 0)
         {
-            enemyProjectileTag = "EditorOnly";
+          
         }
         else
         {
-            enemyProjectileTag = "Player";
+          
         }
         shooting.Init(id);
         GetComponent<Renderer>().material = id == 0 ? playerMateria1 : playerMateria2;
@@ -142,12 +146,24 @@ public class Player : MonoBehaviour
             dashCooldownUI.gameObject.SetActive(true);
             Spawn();
         }
+        
+        if(other.CompareTag("Player"))
+        {
+            Destroy(other.gameObject);
+            shooting.pickUpAmmo();
+        }
+        if(other.CompareTag("EditorOnly"))
+        {
+            Destroy(other.gameObject);
+            lives++;
+        }
     }
 
     public void TakeDamage()
     {
         gotHurt();
         lives--;
+        tickSource.Play();
         if (lives <= 0)
         {
             lives = 3;
@@ -156,7 +172,6 @@ public class Player : MonoBehaviour
             dashCooldownUI.gameObject.SetActive(true);
             Spawn();
         }
-        
     }
 
     private void gotHurt()
