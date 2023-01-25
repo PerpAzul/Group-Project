@@ -11,4 +11,12 @@ public class Ammo : MonoBehaviour
     {
         transform.Rotate(0, 360 * speedY * Time.deltaTime, 0);
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("ItemDestroyer"))
+        {
+            Debug.Log("Trying to destroy Ammo");
+            Destroy(gameObject);
+        }
+    }
 }

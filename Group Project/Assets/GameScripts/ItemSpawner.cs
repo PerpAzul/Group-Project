@@ -34,7 +34,7 @@ public class ItemSpawner : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(10f*Random.Range(1f, 3f));
             Instantiate(Ammo, AmmoSpawn.position, AmmoSpawn.rotation);
         }
     }
@@ -42,7 +42,7 @@ public class ItemSpawner : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(30f*Random.Range(1f, 3f));
             Instantiate(Healz, AmmoSpawn.position, AmmoSpawn.rotation);
         }
     }
@@ -50,7 +50,7 @@ public class ItemSpawner : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(60f);
+            yield return new WaitForSeconds(30f*Random.Range(1f, 2f));
             Instantiate(SkyTP, SkyTPSpawn.position, SkyTPSpawn.rotation);
         }
     }

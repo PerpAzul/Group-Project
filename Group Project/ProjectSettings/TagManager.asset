@@ -10,6 +10,7 @@ TagManager:
   - Healz
   - SkyTP
   - SkyTpPlatform
+  - ItemDestroyer
   layers:
   - Default
   - TransparentFX

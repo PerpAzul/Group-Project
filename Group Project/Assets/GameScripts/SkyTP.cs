@@ -15,4 +15,12 @@ public class SkyTP : MonoBehaviour
     {
         
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("ItemDestroyer"))
+        {
+            Debug.Log("Trying to destroy Ammo");
+            Destroy(gameObject);
+        }
+    }
 }
