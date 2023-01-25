@@ -58,15 +58,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Grenade",
-                    "type": "Button",
-                    "id": "e64876b7-71aa-4278-882b-d3749a13bbd2",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -94,19 +85,8 @@
                 },
                 {
                     "name": "",
-                    "id": "f0c8342f-04e0-4e5b-865a-7d1fa2484407",
-                    "path": "<XInputController>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Control1",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f59fec45-eb66-414f-a4b6-fad222f753c0",
-                    "path": "<DualSenseGamepadHID>/start",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "Control2",
@@ -127,45 +107,12 @@
                 },
                 {
                     "name": "",
-                    "id": "46dd3b8b-5b94-42a3-8496-7a9d532fe10c",
-                    "path": "<XInputController>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Control1",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2f5c51b6-9202-4fed-a938-a37b19abdb20",
-                    "path": "<DualSenseGamepadHID>/buttonWest",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Control2",
+                    "groups": "Control2;Control1",
                     "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dc332bea-575f-418e-921c-a6f064f8f999",
-                    "path": "<XInputController>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Control1",
-                    "action": "Grenade",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bcbc8726-1544-44d9-8eb5-a73bee575ddc",
-                    "path": "<DualSenseGamepadHID>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Control2",
-                    "action": "Grenade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

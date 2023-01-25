@@ -6,22 +6,41 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
-    private NewControls inputControls;
-    
     //Camera and Bullet variables
-    [SerializeField] private float speed = 1000f;
     [SerializeField] private Camera fpsCam;
+    [SerializeField] private float range;
     private bool isShooting = false;
+    public float ammo = 10;
+    
+    //bulletPrefabs and Materials
     [SerializeField] private GameObject bulletPoint;
-    [SerializeField] private GameObject bulletPrefab;
-    public static float ammo = 1000;
+    [SerializeField] private GameObject bulletPrefab1;
+    [SerializeField] private GameObject bulletPrefab2;
+    [SerializeField] private Material bulletMaterial1;
+    [SerializeField] private Material bulletMaterial2;
+    
+    private GameObject bulletPrefab;
     
     //UI variables
     [SerializeField] private TMPro.TextMeshProUGUI ammoUI;
+    [SerializeField] private GameObject hitmarkerUI;
+    [SerializeField] private GameObject crosshairUI;
+    
+    //Tags
+    private Player playerTag;
+    
+    //Particle System
+    [SerializeField] private ParticleSystem flash;
 
-    private void Awake()
+    private void Start()
     {
-        inputControls = new NewControls();
+        hitmarkerUI.gameObject.SetActive(false);
+    }
+
+    public void Init(int id)
+    {
+        bulletPrefab = id == 0 ? bulletPrefab1 : bulletPrefab2;
+        GetComponent<Renderer>().material = id == 0 ? bulletMaterial1 : bulletMaterial2;
     }
 
     // Update is called once per frame
@@ -35,43 +54,44 @@ public class Shooting : MonoBehaviour
     {
         if (ammo > 0)
         {
-            GameObject bullet = Instantiate(bulletPrefab, bulletPoint.transform.position, transform.rotation);
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
             ammo--;
-            Destroy(bullet, 2);   
+            flash.Play();
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            {
+                Player target = hit.transform.GetComponent<Player>();
+                if (target != null)
+                {
+                    hitActive();
+                    Invoke("hitDisable", 0.2f);
+                    target.TakeDamage();
+                }
+            }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void returnAmmo()
     {
-        if (other.CompareTag("Respawn"))
-        {
-            Destroy(gameObject);
-        }
+        ammo = 10;
     }
 
-    public static void returnAmmo()
-    {
-        ammo = 1000;
-    }
-    
-    private void OnEnable()
-    {
-        // inputControls.Player.Shoot.performed += doShoot;
-        // inputControls.Player.Shoot.Enable();
-    }
-    
     public void doShoot(InputAction.CallbackContext obj)
     {
         if (obj.performed)
         {
-            Debug.Log(obj.ReadValue<float>());
             Shoot();
         }
     }
-    
-    private void OnDisable()
+
+    private void hitActive()
     {
-        // inputControls.Player.Shoot.Disable();
+        crosshairUI.gameObject.SetActive(false);
+        hitmarkerUI.gameObject.SetActive(true);
+    }
+
+    private void hitDisable()
+    {
+        crosshairUI.gameObject.SetActive(true);
+        hitmarkerUI.gameObject.SetActive(false);
     }
 }

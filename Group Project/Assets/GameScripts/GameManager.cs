@@ -28,26 +28,14 @@ public class GameManager : MonoBehaviour
       {
          Destroy(gameObject);
       }
-      
-      joinAction.Enable();
-      joinAction.performed += context => JoinAction(context);
-      
-      leaveAction.Enable();
-      leaveAction.performed += context => LeaveAction(context);
    }
-
-   private void Start()
+   
+   public void OnPlayerJoined(PlayerInput playerInput)
    {
-      // PlayerInputManager.instance.JoinPlayer(0, -1, "Control1");
-   }
-
-   void OnPlayerJoined(PlayerInput playerInput)
-   {
-      // playerList.Add(playerInput);
-      // if (PlayerJoinedGame != null)
-      // {
-      //    PlayerJoinedGame(playerInput);
-      // }
+      playerList.Add(playerInput);
+      int currentId = playerList.Count - 1;
+      Player player = playerList[currentId].GetComponent<Player>();
+      player.Init(currentId);
    }
 
    void OnPlayerLeft(PlayerInput playerInput)

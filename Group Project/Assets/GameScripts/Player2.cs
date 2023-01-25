@@ -80,7 +80,7 @@ public class Player2 : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             lives = 3;
-            Shooting.returnAmmo();
+            // Shooting.returnAmmo();
             Spawn();
         }
 
@@ -92,7 +92,7 @@ public class Player2 : MonoBehaviour
         if (lives <= 0)
         {
             lives = 3;
-            Shooting.returnAmmo();
+            // Shooting.returnAmmo();
             Spawn();
         }
     }

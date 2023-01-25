@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public CharacterController controller;
-
-    private NewControls inputControls;
     private Vector2 movement;
 
     //speed of player
@@ -33,25 +32,60 @@ public class Player : MonoBehaviour
     
     //UI
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
+    [SerializeField] private TMPro.TextMeshProUGUI dashCooldownUI;
+    [SerializeField] private GameObject redScreen;
     
-    //PlayerIndex
-    private int index = 0;
-    private int splitScreenIndex = -1;
 
-    private void Awake()
+    //Spawn
+    [SerializeField] private Vector3 spawnPoint1;
+    [SerializeField] private Vector3 spawnPoint2;
+    
+    private Vector3 spawnPoint;
+    private int index = 0;
+    
+    //Tag from bullet
+    private string enemyProjectileTag;
+    
+    //Dash
+    [SerializeField] private Transform orientation;
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashUpwardForce;
+    [SerializeField] private float cooldownTime = 2;
+    private float nextDashTime = 0;
+    private bool isCooldown;
+    private float timer;
+    
+    //Init
+    [Header("Init Settings")]
+    public Shooting shooting;
+
+    [SerializeField] private Material playerMateria1;
+    [SerializeField] private Material playerMateria2;
+
+    private void Start()
     {
-        inputControls = new NewControls();
+        dashCooldownUI.gameObject.SetActive(true);
     }
 
-    void Start()
+    public void Init(int id)
     {
+        if (id == 0)
+        {
+            enemyProjectileTag = "EditorOnly";
+        }
+        else
+        {
+            enemyProjectileTag = "Player";
+        }
+        shooting.Init(id);
+        GetComponent<Renderer>().material = id == 0 ? playerMateria1 : playerMateria2;
+        spawnPoint = id == 0 ? spawnPoint1 : spawnPoint2;
         Spawn();
     }
     
     void Update()
     {
         //check if player is on the ground or not
-        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -67,14 +101,35 @@ public class Player : MonoBehaviour
         //applying gravity to the player
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-        
-        //UI for ammo and life
-        livesUI.text = "Lives: " + lives;
+
+        //UI for life and dash
+        livesUI.text = "Lifes: " + lives;
+        dashCooldownUI.text = "Dash";
+        if (Time.time > nextDashTime)
+        {
+            isCooldown = false;
+        }
+        if (isCooldown)
+        {
+            dashCooldownUI.gameObject.SetActive(false);
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            dashCooldownUI.gameObject.SetActive(true);
+        }
+
+        if (redScreen.GetComponent<Image>().color.a > 0)
+        {
+            var color = redScreen.GetComponent<Image>().color;
+            color.a -= 0.01f;
+            redScreen.GetComponent<Image>().color = color;
+        }
     }
     
     private void Spawn()
     {
-        transform.position = new Vector3(0.004f, 1.71f, 85.128f);
+        transform.position = spawnPoint;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,33 +137,40 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             lives = 3;
-            Shooting.returnAmmo();
+            shooting.returnAmmo();
+            nextDashTime = Time.time;
+            dashCooldownUI.gameObject.SetActive(true);
             Spawn();
         }
+    }
 
-        if (other.CompareTag("EditorOnly"))
-        {
-            lives--;
-        }
-
+    public void TakeDamage()
+    {
+        gotHurt();
+        lives--;
         if (lives <= 0)
         {
             lives = 3;
-            Shooting.returnAmmo();
+            shooting.returnAmmo();
+            nextDashTime = Time.time;
+            dashCooldownUI.gameObject.SetActive(true);
             Spawn();
         }
+        
     }
 
-    private void OnEnable()
+    private void gotHurt()
     {
-        //movement = inputControls.Player.Move;
-        //movement.Enable();
+        var color = redScreen.GetComponent<Image>().color;
+        color.a = 0.8f;
+        redScreen.GetComponent<Image>().color = color;
+    }
 
-        //inputControls.Player.Jump.performed += doJump;
-        //inputControls.Player.Jump.Enable();
+    public void doMove(InputAction.CallbackContext obj)
+    {
+        movement = obj.ReadValue<Vector2>();
     }
     
-
     public void doJump(InputAction.CallbackContext obj)
     {
         if (isGrounded)
@@ -117,14 +179,15 @@ public class Player : MonoBehaviour
         }
     }
     
-    public void doMove(InputAction.CallbackContext obj)
+    public void doDash(InputAction.CallbackContext obj)
     {
-        movement = obj.ReadValue<Vector2>();
-    }
-
-    private void OnDisable()
-    {
-        //movement.Disable();
-        //inputControls.Player.Jump.Disable();
+        if (Time.time > nextDashTime)
+        {
+            timer = cooldownTime;
+            isCooldown = true;
+            Vector3 move = orientation.forward * dashForce + orientation.up * dashUpwardForce;
+            controller.Move(move);
+            nextDashTime = Time.time + cooldownTime;
+        }
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class LookingAround : MonoBehaviour
 {
-    private NewControls inputControls;
     private Vector2 looking;
     
     //sensitivity
@@ -17,12 +16,7 @@ public class LookingAround : MonoBehaviour
 
     //rotation
     private float xRotation;
-
-    private void Awake()
-    {
-        inputControls = new NewControls();
-    }
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +26,6 @@ public class LookingAround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         float mouseX = looking.x * mouseSensitivity * Time.deltaTime;
         float mouseY = looking.y * mouseSensitivity * Time.deltaTime;
 
@@ -49,16 +41,5 @@ public class LookingAround : MonoBehaviour
     public void DoLook(InputAction.CallbackContext context)
     {
         looking = context.ReadValue<Vector2>();
-    }
-    
-    private void OnEnable()
-    {
-        // looking = inputControls.Player.Look;
-        // looking.Enable();
-    }
-    
-    private void OnDisable()
-    {
-        //looking.Disable();
     }
 }
