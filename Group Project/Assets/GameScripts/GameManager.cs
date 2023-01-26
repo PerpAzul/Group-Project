@@ -13,10 +13,6 @@ public class GameManager : MonoBehaviour
    
    //Instances
    public static GameManager instance = null;
-   
-   //Events
-   public event System.Action<PlayerInput> PlayerJoinedGame;
-   public event System.Action<PlayerInput> PlayerLeftGame;
 
    private void Awake()
    {

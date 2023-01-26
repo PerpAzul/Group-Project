@@ -9,7 +9,6 @@ public class Shooting : MonoBehaviour
     //Camera and Bullet variables
     [SerializeField] private Camera fpsCam;
     [SerializeField] private float range;
-    private bool isShooting = false;
     public float ammo = 10;
     
     //Init
@@ -77,10 +76,6 @@ public class Shooting : MonoBehaviour
                 Player target = hit.transform.GetComponent<Player>();
                 if (target != null && playerIndex != target.playerIndex)
                 {
-                    if (target.lives == 1)
-                    {
-                        
-                    }
                     hitActive();
                     Invoke("hitDisable", 0.2f);
                     target.TakeDamage();
@@ -96,7 +91,7 @@ public class Shooting : MonoBehaviour
 
     public void pickUpAmmo()
     {
-        ammo = ammo + 10;
+        ammo = ammo + 5;
     }
 
     public void doShoot(InputAction.CallbackContext obj)

@@ -43,8 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector3 spawnPoint2;
     
     private Vector3 spawnPoint;
-    private int index = 0;
-    
+
     //Tag from bullet
     private string enemyProjectileTag;
     
@@ -68,10 +67,7 @@ public class Player : MonoBehaviour
     
     //Audio Source
     [SerializeField] private AudioSource tickSource;
-    
-    //Points
-    private int points = 5;
-    
+
     //Paused
     private PauseMenuControl pauseMenu;
 
@@ -95,7 +91,6 @@ public class Player : MonoBehaviour
         shooting.Init(id);
         GetComponent<Renderer>().material = id == 0 ? playerMateria1 : playerMateria2;
         spawnPoint = id == 0 ? spawnPoint1 : spawnPoint2;
-        Spawn();
     }
     
     void Update()
@@ -119,7 +114,6 @@ public class Player : MonoBehaviour
 
         //UI for life and dash
         livesUI.text = "Lifes: " + lives;
-        pointsUI.text = "Score: " + points;
         dashCooldownUI.text = "Dash";
         if (Time.time > nextDashTime)
         {
@@ -141,13 +135,7 @@ public class Player : MonoBehaviour
             color.a -= 0.01f;
             redScreen.GetComponent<Image>().color = color;
         }
-        
-        //Change Scene if someone won
-        if (points <= 0)
-        {
-            SceneManager.LoadScene(0);
-        }
-        
+
         //Is paused
         pauseMenu = FindObjectOfType<PauseMenuControl>();
     }
@@ -156,20 +144,11 @@ public class Player : MonoBehaviour
     {
         transform.position = spawnPoint;
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Finish"))
         {
-            points = points - 1;
-            if (points <= 0)
-            {
-                SceneManager.LoadScene(0);
-            }
-            lives = 3;
-            shooting.returnAmmo();
-            nextDashTime = Time.time;
-            dashCooldownUI.gameObject.SetActive(true);
             Spawn();
         }
         
@@ -192,16 +171,12 @@ public class Player : MonoBehaviour
         tickSource.Play();
         if (lives <= 0)
         {
-            points = points - 1;
-            if (points <= 0)
-            {
-                SceneManager.LoadScene(0);
-            }
-            lives = 3;
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(0);
+            lives = 10;
             shooting.returnAmmo();
             nextDashTime = Time.time;
             dashCooldownUI.gameObject.SetActive(true);
-            Spawn();
         }
     }
 
