@@ -12,7 +12,7 @@ public class PauseMenuControl : MonoBehaviour
     private InputAction menu;
 
     [SerializeField] private GameObject pauseUI;
-    [SerializeField] private bool isPaused;
+    public bool isPaused;
     
     public UnityEvent GamePaused;
     public UnityEvent GameResumed;
@@ -41,10 +41,6 @@ public class PauseMenuControl : MonoBehaviour
         {
             activateMenu();
         }
-        else
-        {
-            deactivateMenu();
-        }
     }
 
     private void OnDisable()
@@ -64,7 +60,7 @@ public class PauseMenuControl : MonoBehaviour
     public void deactivateMenu()
     {
         optionsScreen.SetActive(false);
-        
+        isPaused = !isPaused;
         Time.timeScale = 1;
         GameResumed.Invoke();
         pauseUI.SetActive(false);

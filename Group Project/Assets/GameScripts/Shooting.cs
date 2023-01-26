@@ -12,10 +12,8 @@ public class Shooting : MonoBehaviour
     private bool isShooting = false;
     public float ammo = 10;
     
-    //bulletPrefabs and Materials
-    [SerializeField] private GameObject bulletPoint;
-    [SerializeField] private GameObject bulletPrefab1;
-    [SerializeField] private GameObject bulletPrefab2;
+    //Init
+    private int playerIndex;
     [SerializeField] private Material bulletMaterial1;
     [SerializeField] private Material bulletMaterial2;
     
@@ -34,16 +32,27 @@ public class Shooting : MonoBehaviour
     
     //Audio Source
     [SerializeField] private AudioSource tickSource;
+    
+    //Paused
+    private PauseMenuControl pauseMenu;
 
     private void Start()
     {
         hitmarkerUI.gameObject.SetActive(false);
         tickSource = GetComponent<AudioSource>();
+        pauseMenu = FindObjectOfType<PauseMenuControl>();
     }
 
     public void Init(int id)
     {
-        bulletPrefab = id == 0 ? bulletPrefab1 : bulletPrefab2;
+        if (id == 0)
+        {
+            playerIndex = 0;
+        }
+        else
+        {
+            playerIndex = 1;
+        }
         GetComponent<Renderer>().material = id == 0 ? bulletMaterial1 : bulletMaterial2;
     }
 
@@ -51,6 +60,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         ammoUI.text = "Ammo: " + ammo;
+        pauseMenu = FindObjectOfType<PauseMenuControl>();
     }
 
     //Shoots
@@ -65,8 +75,12 @@ public class Shooting : MonoBehaviour
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
                 Player target = hit.transform.GetComponent<Player>();
-                if (target != null)
+                if (target != null && playerIndex != target.playerIndex)
                 {
+                    if (target.lives == 1)
+                    {
+                        
+                    }
                     hitActive();
                     Invoke("hitDisable", 0.2f);
                     target.TakeDamage();
@@ -87,7 +101,7 @@ public class Shooting : MonoBehaviour
 
     public void doShoot(InputAction.CallbackContext obj)
     {
-        if (obj.performed)
+        if (obj.performed && pauseMenu.isPaused == false)
         {
             Shoot();
         }

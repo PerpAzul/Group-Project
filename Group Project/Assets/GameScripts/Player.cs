@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -28,12 +29,13 @@ public class Player : MonoBehaviour
     bool isGrounded;
 
     //Life
-    [SerializeField] private int lives;
+    public int lives;
     
     //UI
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
     [SerializeField] private TMPro.TextMeshProUGUI dashCooldownUI;
     [SerializeField] private GameObject redScreen;
+    [SerializeField] private TMPro.TextMeshProUGUI pointsUI;
     
 
     //Spawn
@@ -61,25 +63,34 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Material playerMateria1;
     [SerializeField] private Material playerMateria2;
+
+    public int playerIndex;
     
     //Audio Source
     [SerializeField] private AudioSource tickSource;
+    
+    //Points
+    private int points = 5;
+    
+    //Paused
+    private PauseMenuControl pauseMenu;
 
     private void Start()
     {
         dashCooldownUI.gameObject.SetActive(true);
         tickSource = GetComponent<AudioSource>();
+        pauseMenu = FindObjectOfType<PauseMenuControl>();
     }
 
     public void Init(int id)
     {
         if (id == 0)
         {
-          
+            playerIndex = 0;
         }
         else
         {
-          
+            playerIndex = 1;
         }
         shooting.Init(id);
         GetComponent<Renderer>().material = id == 0 ? playerMateria1 : playerMateria2;
@@ -108,6 +119,7 @@ public class Player : MonoBehaviour
 
         //UI for life and dash
         livesUI.text = "Lifes: " + lives;
+        pointsUI.text = "Score: " + points;
         dashCooldownUI.text = "Dash";
         if (Time.time > nextDashTime)
         {
@@ -129,6 +141,15 @@ public class Player : MonoBehaviour
             color.a -= 0.01f;
             redScreen.GetComponent<Image>().color = color;
         }
+        
+        //Change Scene if someone won
+        if (points <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
+        
+        //Is paused
+        pauseMenu = FindObjectOfType<PauseMenuControl>();
     }
     
     private void Spawn()
@@ -140,6 +161,11 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
+            points = points - 1;
+            if (points <= 0)
+            {
+                SceneManager.LoadScene(0);
+            }
             lives = 3;
             shooting.returnAmmo();
             nextDashTime = Time.time;
@@ -166,6 +192,11 @@ public class Player : MonoBehaviour
         tickSource.Play();
         if (lives <= 0)
         {
+            points = points - 1;
+            if (points <= 0)
+            {
+                SceneManager.LoadScene(0);
+            }
             lives = 3;
             shooting.returnAmmo();
             nextDashTime = Time.time;
@@ -180,7 +211,7 @@ public class Player : MonoBehaviour
         color.a = 0.8f;
         redScreen.GetComponent<Image>().color = color;
     }
-
+    
     public void doMove(InputAction.CallbackContext obj)
     {
         movement = obj.ReadValue<Vector2>();
@@ -188,7 +219,7 @@ public class Player : MonoBehaviour
     
     public void doJump(InputAction.CallbackContext obj)
     {
-        if (isGrounded)
+        if (isGrounded && pauseMenu.isPaused == false)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }

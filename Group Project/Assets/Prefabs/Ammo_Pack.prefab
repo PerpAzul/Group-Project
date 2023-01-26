@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5249635672421963926}
   - component: {fileID: 2010569985170465903}
   - component: {fileID: 837594816573196321}
-  - component: {fileID: 1813307050981926750}
+  - component: {fileID: 3616388302150864266}
   m_Layer: 0
   m_Name: Ammo_Pack
   m_TagString: Player
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.47200003, y: 0.22600001, z: 0.21999992}
   m_Center: {x: 0, y: 0.113000005, z: -0.007910401}
---- !u!114 &1813307050981926750
+--- !u!114 &3616388302150864266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 277583476356010163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec48c66a53a50fc458f4f8657fab83b6, type: 3}
+  m_Script: {fileID: 11500000, guid: b58e627cf6305934da5da34d57e9c041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedY: 0.25

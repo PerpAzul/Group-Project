@@ -8,6 +8,7 @@ public class SpawnItems : MonoBehaviour
     public GameObject Ammo;
     public GameObject Healz;
     public Transform AmmoSpawn;
+    public Transform HeartSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class SpawnItems : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(Random.Range(25f, 35f));
-            Instantiate(Healz, AmmoSpawn.position, AmmoSpawn.rotation);
+            Instantiate(Healz, HeartSpawn.position, HeartSpawn.rotation);
         }
     }
 }

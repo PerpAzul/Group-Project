@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class RotateHeart : MonoBehaviour
 {
-    [SerializeField] float speedY;
+    [SerializeField] float speedZ;
 
     private void Awake()
     {
@@ -15,7 +14,7 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 360 * speedY * Time.deltaTime, 0);
+        transform.Rotate(0, 0, 360 * speedZ * Time.deltaTime);
     }
 
     IEnumerator Despawn()
