@@ -36,7 +36,11 @@ public class PauseMenuControl : MonoBehaviour
 
     void pause(InputAction.CallbackContext context)
     {
-        isPaused = !isPaused;
+        if (isPaused == false)
+        {
+            isPaused = !isPaused;
+        }
+
         if (isPaused)
         {
             activateMenu();
