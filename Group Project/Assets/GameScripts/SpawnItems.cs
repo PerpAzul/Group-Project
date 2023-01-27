@@ -29,7 +29,7 @@ public class SpawnItems : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(25f, 35f));
+            yield return new WaitForSeconds(Random.Range(30f, 40f));
             Instantiate(Healz, HeartSpawn.position, HeartSpawn.rotation);
         }
     }

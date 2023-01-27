@@ -706,7 +706,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  lives: 10
+  lives: 3
   livesUI: {fileID: 398590474}
   dashCooldownUI: {fileID: 5147583217015794997}
   redScreen: {fileID: 8430442598451481458}
@@ -737,7 +737,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &3003099290114064840
 MonoBehaviour:
   m_ObjectHideFlags: 0

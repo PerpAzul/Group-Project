@@ -147,8 +147,18 @@ public class Player : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Finish"))
+        if (other.CompareTag("DeathZone"))
         {
+            if (lives > 3)
+            {
+                lives = 3;
+            }
+
+            if (shooting.ammo > 10)
+            {
+                shooting.returnAmmo();
+            }
+            
             Spawn();
         }
         
@@ -174,7 +184,7 @@ public class Player : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             SceneManager.LoadScene(0);
-            lives = 10;
+            lives = 3;
             shooting.returnAmmo();
             nextDashTime = Time.time;
             dashCooldownUI.gameObject.SetActive(true);
