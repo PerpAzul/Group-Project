@@ -18,8 +18,8 @@ public class SpawnItems : MonoBehaviour
     {
         StartCoroutine(SpawnTimerAmmoCoroutine());
         StartCoroutine(SpawnTimerHealzCoroutine());
-        // StartCoroutine(SpawnTimerInvisCoroutine());
-        // StartCoroutine(SpawnTimerDoubleDamageCoroutine());
+        StartCoroutine(SpawnTimerInvisCoroutine());
+        StartCoroutine(SpawnTimerDoubleDamageCoroutine());
     }
     
     IEnumerator SpawnTimerAmmoCoroutine()
@@ -38,20 +38,20 @@ public class SpawnItems : MonoBehaviour
             Instantiate(Healz, HeartSpawn.position, HeartSpawn.rotation);
         }
     }
-    // IEnumerator SpawnTimerInvisCoroutine()
-    // {
-    //     while(true)
-    //     {
-    //         yield return new WaitForSeconds(Random.Range(25f, 35f));
-    //         Instantiate(InvisPowerUp, PowerUpSpawn.position, PowerUpSpawn.rotation);
-    //     }
-    // }
-    // IEnumerator SpawnTimerDoubleDamageCoroutine()
-    // {
-    //     while(true)
-    //     {
-    //         yield return new WaitForSeconds(Random.Range(25f, 35f));
-    //         Instantiate(DoubleDamagePowerUp, PowerUpSpawn.position, PowerUpSpawn.rotation);
-    //     }
-    // }
+    IEnumerator SpawnTimerInvisCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(Random.Range(25f, 35f));
+            Instantiate(InvisPowerUp, PowerUpSpawn.position, PowerUpSpawn.rotation);
+        }
+    }
+    IEnumerator SpawnTimerDoubleDamageCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(Random.Range(25f, 35f));
+            Instantiate(DoubleDamagePowerUp, PowerUpSpawn.position, PowerUpSpawn.rotation);
+        }
+    }
 }
