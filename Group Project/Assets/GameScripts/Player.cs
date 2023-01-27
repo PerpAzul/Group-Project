@@ -170,25 +170,31 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             lives++;
         }
-        // if(other.CompareTag("InvisPowerUp"))
-        // {
-        //     Destroy(other.gameObject);
-        //     StartCoroutine(Invis());
-        // }
-        // if(other.CompareTag("DoubleDamagePowerUp"))
-        // {
-        //     Destroy(other.gameObject);
-        //     shooting.UseDoubleDamagePowerUp();
-        // }
+        if(other.CompareTag("InvisPowerUp"))
+        {
+            Destroy(other.gameObject);
+            StartCoroutine(Invis());
+        }
+        if(other.CompareTag("DoubleDamagePowerUp"))
+        {
+            Destroy(other.gameObject);
+            shooting.UseDoubleDamagePowerUp();
+        }
     }
 
-    // IEnumerator Invis()
-    // {
-    //     MeshRenderer SpielerKörper = GetComponent<MeshRenderer>();
-    //     SpielerKörper.enabled = false;
-    //     yield return new WaitForSeconds(3);
-    //     SpielerKörper.enabled = true;
-    // }
+    IEnumerator Invis()
+    {
+        MeshRenderer[] RendererArray = GetComponentsInChildren<MeshRenderer>();
+        foreach (var item in RendererArray)
+        {
+            item.enabled = false;
+        }
+        yield return new WaitForSeconds(3);
+        foreach (var item in RendererArray)
+        {
+            item.enabled = true;
+        }
+    }
 
     public void TakeDamage()
     {

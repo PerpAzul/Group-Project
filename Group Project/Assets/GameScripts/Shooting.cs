@@ -108,16 +108,16 @@ public class Shooting : MonoBehaviour
         }
     }
     
-    // public void UseDoubleDamagePowerUp()
-    // {
-    //     StartCoroutine(DoubleDamagePowerUp());
-    // }
-    // IEnumerator DoubleDamagePowerUp()
-    // {
-    //     doubleDamagePowerUpActive = true;
-    //     yield return new WaitForSeconds(3);
-    //     doubleDamagePowerUpActive = false;
-    // }
+    public void UseDoubleDamagePowerUp()
+    {
+        StartCoroutine(DoubleDamagePowerUp());
+    }
+    IEnumerator DoubleDamagePowerUp()
+    {
+        doubleDamagePowerUpActive = true;
+        yield return new WaitForSeconds(3);
+        doubleDamagePowerUpActive = false;
+    }
 
     private void hitActive()
     {
