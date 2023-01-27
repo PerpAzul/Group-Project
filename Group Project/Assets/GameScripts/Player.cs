@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         //UI for life and dash
-        livesUI.text = "Lifes: " + lives;
+        livesUI.text = "Lives: " + lives;
         dashCooldownUI.text = "Dash";
         if (Time.time > nextDashTime)
         {
