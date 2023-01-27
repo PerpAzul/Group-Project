@@ -35,8 +35,6 @@ public class Player : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
     [SerializeField] private TMPro.TextMeshProUGUI dashCooldownUI;
     [SerializeField] private GameObject redScreen;
-    [SerializeField] private TMPro.TextMeshProUGUI pointsUI;
-    
 
     //Spawn
     [SerializeField] private Vector3 spawnPoint1;
@@ -172,16 +170,16 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             lives++;
         }
-        if(other.CompareTag("InvisPowerUp"))
-        {
-            Destroy(other.gameObject);
-            StartCoroutine(Invis());
-        }
-        if(other.CompareTag("DoubleDamagePowerUp"))
-        {
-            Destroy(other.gameObject);
-            shooting.UseDoubleDamagePowerUp();
-        }
+        // if(other.CompareTag("InvisPowerUp"))
+        // {
+        //     Destroy(other.gameObject);
+        //     StartCoroutine(Invis());
+        // }
+        // if(other.CompareTag("DoubleDamagePowerUp"))
+        // {
+        //     Destroy(other.gameObject);
+        //     shooting.UseDoubleDamagePowerUp();
+        // }
     }
 
     IEnumerator Invis()
