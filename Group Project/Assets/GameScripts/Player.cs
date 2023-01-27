@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         //UI for life and dash
-        livesUI.text = "Lives: " + lives;
+        livesUI.text = "Lifes: " + lives;
         dashCooldownUI.text = "Dash";
         if (Time.time > nextDashTime)
         {
@@ -205,7 +205,17 @@ public class Player : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            SceneManager.LoadScene(0);
+
+            if (playerIndex == 0)
+            {
+                SceneManager.LoadScene(3);
+            }
+
+            if (playerIndex == 1)
+            {
+                SceneManager.LoadScene(2);
+            }
+            
             lives = 3;
             shooting.returnAmmo();
             nextDashTime = Time.time;

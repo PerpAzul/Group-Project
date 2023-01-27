@@ -710,7 +710,6 @@ MonoBehaviour:
   livesUI: {fileID: 398590474}
   dashCooldownUI: {fileID: 5147583217015794997}
   redScreen: {fileID: 8430442598451481458}
-  pointsUI: {fileID: 0}
   spawnPoint1: {x: 0.22, y: -22, z: -20.1}
   spawnPoint2: {x: 0.22, y: -22, z: 85.11}
   orientation: {fileID: 3003099290114064881}
@@ -861,7 +860,7 @@ AudioSource:
   m_GameObject: {fileID: 3003099290114064885}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6403957976445019362, guid: e0d749acbce0731418c217d74d02b294, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2d07eba8eab06cb45898cb11da4a54e2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -6432,7 +6431,7 @@ AudioSource:
   m_GameObject: {fileID: 3003099291094346314}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6403957976445019362, guid: e0d749acbce0731418c217d74d02b294, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
