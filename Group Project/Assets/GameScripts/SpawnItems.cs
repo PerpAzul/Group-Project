@@ -11,7 +11,8 @@ public class SpawnItems : MonoBehaviour
     public GameObject DoubleDamagePowerUp;
     public Transform AmmoSpawn;
     public Transform HeartSpawn;
-    public Transform PowerUpSpawn;
+    public Transform InvisibleSpawn;
+    public Transform DoubleSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,7 @@ public class SpawnItems : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(40f, 50f));
+            yield return new WaitForSeconds(Random.Range(50f, 60f));
             Instantiate(Healz, HeartSpawn.position, HeartSpawn.rotation);
         }
     }
@@ -42,16 +43,16 @@ public class SpawnItems : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(25f, 35f));
-            Instantiate(InvisPowerUp, PowerUpSpawn.position, PowerUpSpawn.rotation);
+            yield return new WaitForSeconds(Random.Range(30f, 40f));
+            Instantiate(InvisPowerUp, InvisibleSpawn.position, InvisibleSpawn.rotation);
         }
     }
     IEnumerator SpawnTimerDoubleDamageCoroutine()
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(25f, 35f));
-            Instantiate(DoubleDamagePowerUp, PowerUpSpawn.position, PowerUpSpawn.rotation);
+            yield return new WaitForSeconds(Random.Range(30f, 40f));
+            Instantiate(DoubleDamagePowerUp, DoubleSpawn.position, DoubleSpawn.rotation);
         }
     }
 }

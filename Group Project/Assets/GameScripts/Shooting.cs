@@ -83,7 +83,7 @@ public class Shooting : MonoBehaviour
                     target.TakeDamage();
                     if(doubleDamagePowerUpActive)
                     {
-                        target.TakeDamage();
+                        target.TakeDamage2();
                     }
                 }
             }
@@ -115,7 +115,7 @@ public class Shooting : MonoBehaviour
     IEnumerator DoubleDamagePowerUp()
     {
         doubleDamagePowerUpActive = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         doubleDamagePowerUpActive = false;
     }
 

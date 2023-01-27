@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
         {
             item.enabled = false;
         }
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         foreach (var item in RendererArray)
         {
             item.enabled = true;
@@ -201,6 +201,31 @@ public class Player : MonoBehaviour
         gotHurt();
         lives--;
         tickSource.Play();
+        if (lives <= 0)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+
+            if (playerIndex == 0)
+            {
+                SceneManager.LoadScene(3);
+            }
+
+            if (playerIndex == 1)
+            {
+                SceneManager.LoadScene(2);
+            }
+            
+            lives = 3;
+            shooting.returnAmmo();
+            nextDashTime = Time.time;
+            dashCooldownUI.gameObject.SetActive(true);
+        }
+    }
+    
+    public void TakeDamage2()
+    {
+        lives--;
         if (lives <= 0)
         {
             Cursor.visible = true;
