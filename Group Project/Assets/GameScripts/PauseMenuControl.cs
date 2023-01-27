@@ -76,6 +76,8 @@ public class PauseMenuControl : MonoBehaviour
     {
         Time.timeScale = 1;
         GameResumed.Invoke();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         SceneManager.LoadScene("GameMenu");
     }
     
