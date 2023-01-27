@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Ammo
   - Healz
+  - DoubleDamagePowerUp
+  - InvisPowerUp
   layers:
   - Default
   - TransparentFX
