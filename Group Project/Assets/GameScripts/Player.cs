@@ -171,7 +171,8 @@ public class Player : MonoBehaviour
         tickSource.Play();
         if (lives <= 0)
         {
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             SceneManager.LoadScene(0);
             lives = 10;
             shooting.returnAmmo();
