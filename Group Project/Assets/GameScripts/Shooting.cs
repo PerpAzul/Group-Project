@@ -35,6 +35,8 @@ public class Shooting : MonoBehaviour
     //Paused
     private PauseMenuControl pauseMenu;
 
+    bool doubleDamagePowerUpActive;
+
     private void Start()
     {
         hitmarkerUI.gameObject.SetActive(false);
@@ -79,6 +81,10 @@ public class Shooting : MonoBehaviour
                     hitActive();
                     Invoke("hitDisable", 0.2f);
                     target.TakeDamage();
+                    if(doubleDamagePowerUpActive)
+                    {
+                        target.TakeDamage();
+                    }
                 }
             }
         }
@@ -100,6 +106,17 @@ public class Shooting : MonoBehaviour
         {
             Shoot();
         }
+    }
+    
+    public void UseDoubleDamagePowerUp()
+    {
+        StartCoroutine(DoubleDamagePowerUp());
+    }
+    IEnumerator DoubleDamagePowerUp()
+    {
+        doubleDamagePowerUpActive = true;
+        yield return new WaitForSeconds(3);
+        doubleDamagePowerUpActive = false;
     }
 
     private void hitActive()
