@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     //UI
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
     [SerializeField] private TMPro.TextMeshProUGUI dashCooldownUI;
+    [Header("DashUI")] public Image dashImage;
     [SerializeField] private GameObject redScreen;
 
     //Spawn
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        dashCooldownUI.gameObject.SetActive(true);
+        dashImage.fillAmount = 0;
         tickSource = GetComponent<AudioSource>();
         pauseMenu = FindObjectOfType<PauseMenuControl>();
     }
@@ -112,19 +113,23 @@ public class Player : MonoBehaviour
 
         //UI for life and dash
         livesUI.text = "Lifes: " + lives;
-        dashCooldownUI.text = "Dash";
+        dashCooldownUI.text = "Dash: ";
         if (Time.time > nextDashTime)
         {
             isCooldown = false;
         }
         if (isCooldown)
         {
-            dashCooldownUI.gameObject.SetActive(false);
+            dashImage.fillAmount += 1 / cooldownTime * Time.deltaTime;
             timer -= Time.deltaTime;
+            if (dashImage.fillAmount >= 1)
+            {
+                dashImage.fillAmount = 1;
+            }
         }
         else
         {
-            dashCooldownUI.gameObject.SetActive(true);
+            dashImage.fillAmount = 1;
         }
 
         if (redScreen.GetComponent<Image>().color.a > 0)
@@ -230,7 +235,7 @@ public class Player : MonoBehaviour
             lives = 3;
             shooting.returnAmmo();
             nextDashTime = Time.time;
-            dashCooldownUI.gameObject.SetActive(true);
+            dashImage.fillAmount = 1;
         }
     }
     
@@ -255,7 +260,7 @@ public class Player : MonoBehaviour
             lives = 3;
             shooting.returnAmmo();
             nextDashTime = Time.time;
-            dashCooldownUI.gameObject.SetActive(true);
+            dashImage.fillAmount = 1;
         }
     }
 
@@ -285,6 +290,7 @@ public class Player : MonoBehaviour
         {
             timer = cooldownTime;
             isCooldown = true;
+            dashImage.fillAmount = 0;
             Vector3 move = orientation.forward * dashForce + orientation.up * dashUpwardForce;
             controller.Move(move);
             nextDashTime = Time.time + cooldownTime;
