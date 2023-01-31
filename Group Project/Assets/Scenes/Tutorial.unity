@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5193890816213980669, guid: 53fccdfe14765194ea3bfe0f33719558, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 236.55
+      value: 245
       objectReference: {fileID: 0}
     - target: {fileID: 5193890816213980669, guid: 53fccdfe14765194ea3bfe0f33719558, type: 3}
       propertyPath: m_LocalPosition.z
@@ -199,8 +199,16 @@ PrefabInstance:
       value: Heart
       objectReference: {fileID: 0}
     - target: {fileID: 5193890816214338013, guid: 53fccdfe14765194ea3bfe0f33719558, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193890816214338013, guid: 53fccdfe14765194ea3bfe0f33719558, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5193890816214338013, guid: 53fccdfe14765194ea3bfe0f33719558, type: 3}
+      propertyPath: m_TagString
+      value: Healz
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5141866858554773103, guid: 53fccdfe14765194ea3bfe0f33719558, type: 3}
@@ -404,7 +412,7 @@ GameObject:
   - component: {fileID: 434480065}
   - component: {fileID: 434480067}
   - component: {fileID: 434480066}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Invisibility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,6 +556,10 @@ PrefabInstance:
       value: Invisible PowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 6316323162204776550, guid: 504b36d93eb286d46ad0ccf78fb30e14, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316323162204776550, guid: 504b36d93eb286d46ad0ccf78fb30e14, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -573,7 +585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6316323162205074502, guid: 504b36d93eb286d46ad0ccf78fb30e14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -76.027
+      value: -114
       objectReference: {fileID: 0}
     - target: {fileID: 6316323162205074502, guid: 504b36d93eb286d46ad0ccf78fb30e14, type: 3}
       propertyPath: m_LocalPosition.z
@@ -606,6 +618,10 @@ PrefabInstance:
     - target: {fileID: 6316323162205074502, guid: 504b36d93eb286d46ad0ccf78fb30e14, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316323162206975654, guid: 504b36d93eb286d46ad0ccf78fb30e14, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3274999663918177488, guid: 504b36d93eb286d46ad0ccf78fb30e14, type: 3}
@@ -644,7 +660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4855636072980630711, guid: 85620e6ef209eb846b96d573230040ea, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -335.29
+      value: -383
       objectReference: {fileID: 0}
     - target: {fileID: 4855636072980630711, guid: 85620e6ef209eb846b96d573230040ea, type: 3}
       propertyPath: m_LocalPosition.z
@@ -691,6 +707,10 @@ PrefabInstance:
       value: DoubleDamagePowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 9075687400753022892, guid: 85620e6ef209eb846b96d573230040ea, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075687400753022892, guid: 85620e6ef209eb846b96d573230040ea, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -717,7 +737,7 @@ GameObject:
   - component: {fileID: 589725887}
   - component: {fileID: 589725889}
   - component: {fileID: 589725888}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DoubleDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +872,7 @@ GameObject:
   - component: {fileID: 712650006}
   - component: {fileID: 712650008}
   - component: {fileID: 712650007}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1096,7 +1116,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 78.04173
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -1139,7 +1159,7 @@ GameObject:
   - component: {fileID: 1045190813}
   - component: {fileID: 1045190815}
   - component: {fileID: 1045190814}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1300,7 @@ GameObject:
   - component: {fileID: 1180465997}
   - component: {fileID: 1180465999}
   - component: {fileID: 1180465998}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cotrols
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1513,7 +1533,7 @@ GameObject:
   - component: {fileID: 1365959744}
   - component: {fileID: 1365959746}
   - component: {fileID: 1365959745}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PowerUps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1652,7 +1672,7 @@ GameObject:
   - component: {fileID: 1456045272}
   - component: {fileID: 1456045274}
   - component: {fileID: 1456045273}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: XBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1793,7 +1813,7 @@ GameObject:
   - component: {fileID: 1491639154}
   - component: {fileID: 1491639156}
   - component: {fileID: 1491639155}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1934,7 +1954,7 @@ GameObject:
   - component: {fileID: 1634444654}
   - component: {fileID: 1634444656}
   - component: {fileID: 1634444655}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2069,7 +2089,7 @@ GameObject:
   - component: {fileID: 1640527660}
   - component: {fileID: 1640527662}
   - component: {fileID: 1640527661}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2339,6 +2359,10 @@ PrefabInstance:
       value: Ammo_Pack
       objectReference: {fileID: 0}
     - target: {fileID: 277583476356010163, guid: c4cd29099e22d8f4d9a4c14d7b5bcad4, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 277583476356010163, guid: c4cd29099e22d8f4d9a4c14d7b5bcad4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2372,7 +2396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855491860980114080, guid: c4cd29099e22d8f4d9a4c14d7b5bcad4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 56.031
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 3855491860980114080, guid: c4cd29099e22d8f4d9a4c14d7b5bcad4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2509,8 +2533,8 @@ Canvas:
   m_GameObject: {fileID: 2113288246}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 724915527}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
