@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     bool isGrounded;
 
     //Life
-    public int lives;
+    public float lives;
     
     //UI
     [SerializeField] private TMPro.TextMeshProUGUI livesUI;
@@ -136,6 +136,9 @@ public class Player : MonoBehaviour
 
         //Is paused
         pauseMenu = FindObjectOfType<PauseMenuControl>();
+        
+        //adjust lifes
+        
     }
     
     private void Spawn()
@@ -147,9 +150,9 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("DeathZone"))
         {
-            if (lives > 3)
+            if (lives > 1)
             {
-                lives = 3;
+                lives = 1;
             }
 
             if (shooting.ammo > 10)
@@ -157,6 +160,11 @@ public class Player : MonoBehaviour
                 shooting.returnAmmo();
             }
             
+            Spawn();
+        }
+        
+        if (other.CompareTag("Finish"))
+        {
             Spawn();
         }
         
@@ -168,7 +176,10 @@ public class Player : MonoBehaviour
         if(other.CompareTag("EditorOnly"))
         {
             Destroy(other.gameObject);
-            lives++;
+            if (lives < 3)
+            {
+                lives++;
+            }
         }
         if(other.CompareTag("InvisPowerUp"))
         {

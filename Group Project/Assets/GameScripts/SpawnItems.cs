@@ -27,7 +27,7 @@ public class SpawnItems : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(10f, 20f));
+            yield return new WaitForSeconds(Random.Range(5f, 15f));
             Instantiate(Ammo, AmmoSpawn.position, AmmoSpawn.rotation);
         }
     }
@@ -51,7 +51,7 @@ public class SpawnItems : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(30f, 40f));
+            yield return new WaitForSeconds(Random.Range(20f, 30f));
             Instantiate(DoubleDamagePowerUp, DoubleSpawn.position, DoubleSpawn.rotation);
         }
     }
