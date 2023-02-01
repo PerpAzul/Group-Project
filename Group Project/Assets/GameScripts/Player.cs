@@ -181,9 +181,14 @@ public class Player : MonoBehaviour
         if(other.CompareTag("EditorOnly"))
         {
             Destroy(other.gameObject);
-            if (lives < 3)
+            if (lives == 2)
             {
-                lives++;
+                lives = 3;
+            }
+
+            if (lives == 1)
+            {
+                lives = 2;
             }
         }
         if(other.CompareTag("InvisPowerUp"))

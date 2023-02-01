@@ -97,7 +97,7 @@ public class Shooting : MonoBehaviour
     
     public void pickUpAmmo()
     {
-        ammo = ammo + 5;
+        ammo = ammo + 10;
     }
 
     public void doShoot(InputAction.CallbackContext obj)
@@ -115,7 +115,7 @@ public class Shooting : MonoBehaviour
     IEnumerator DoubleDamagePowerUp()
     {
         doubleDamagePowerUpActive = true;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(20);
         doubleDamagePowerUpActive = false;
     }
 
